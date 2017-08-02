@@ -1,0 +1,67 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www,thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout" >
+<div layout:fragment="content">
+
+    <ul class="nav nav-tabs nav-justified">
+        <li><a href="/entregas">Por Entregar</a></li>
+        <li class="active"><a href="#">Entregas</a></li>
+    </ul>
+
+    <div class="form-group pull-right">
+        <input type="text" class="search form-control" placeholder="Buscar"/>
+    </div>
+    <span class="counter pull-right"></span>
+
+    <table class="table table-striped" id="myTable">
+        <thead>
+        <tr class="header">
+            <th>Venta</th>
+            <th>Costo</th>
+            <th>Dirección</th>
+            <th>Fecha</th>
+            <th>Observacion</th>
+            <th>Estado</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr data-th-each="entrega : ${entregas}">
+            <td>
+                <a href="#" class="message" data-th-text="${entrega.nombreCliente}"></a>
+                <div class="text-muted" data-th-text="${entrega.detalleVenta}" ></div>
+            </td>
+            <td>
+                <div class="message" data-th-text="${entrega.costoEnvio}" ></div>
+            </td>
+            <td>
+                <div class="message" data-th-text="${entrega.direccionEntrega}" ></div>
+            </td>
+            <td class="message" data-th-text="${entrega.fechaEntrega}"> </td>
+            <td>
+                <div class="message" data-th-text="${entrega.observacion}" ></div>
+            </td>
+            <td>
+                <div th:if="${entrega.estado} eq 'C'">
+                    <h4><span class="label label-default align-top">Confirmada</span></h4>
+                </div>
+                <div th:if="${entrega.estado} eq 'P'">
+                    <h4><span class="label label-primary align-top">Pendiente</span></h4>
+                    <div>
+                        <a class="label label-success" onclick="return confirmar('¿Confirmar entrega?')" th:href="@{{id}/confirmarEntrega (id=${entrega.id})}" ><span class="glyphicon glyphicon-ok"></span> Confirmar</a>
+                        <a class="label label-danger" onclick="return confirmar('¿Rechazar entrega?')" th:href="@{{id}/rechazarEntrega (id=${entrega.id})}" ><span class="glyphicon glyphicon-remove"></span> Rechazar</a>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <a class="btn btn-primary" th:href="@{{id}/editarEntrega (id=${entrega.id})}">Editar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <span class="pull-right bottom">
+        <a class="btn btn-primary">Salir</a>
+    </span>
+</div>
+</html>

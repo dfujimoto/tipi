@@ -1,0 +1,49 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www,thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout" >
+<div layout:fragment="content">
+    <ul class="nav nav-tabs nav-justified">
+        <li class="active"><a href="#">Por Entregar</a></li>
+        <li><a href="/envios">Entregas</a></li>
+    </ul>
+    <!--a class="btn btn-primary" href="/posts/new">Add new post</a-->
+
+    <table class="table table-striped" id="posts_list">
+        <thead>
+        <tr>
+            <th>Venta</th>
+            <th>Fecha Pactada</th>
+            <th>Dirección</th>
+            <th>Envio Courier</th>
+            <th>Envio Manual</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr data-th-each="venta : ${ventas}">
+            <td>
+                <a href="#" class="message" data-th-text="${venta.nombre}"></a>
+                <div class="text-muted" data-th-text="${venta.detalle}" ></div>
+            </td>
+            <td class="message" data-th-text="${venta.fechaPactada}"> </td>
+            <td>
+                <div class="message" data-th-text="${venta.direccion}" ></div>
+                <div class="text-muted" data-th-text="${venta.distrito}" ></div>
+            </td>
+            <td>
+                <a class="btn btn-primary" onclick="return confirmar('¿Confirmar Servicio?')" th:href="@{{idVenta}/solicitarEnvio (idVenta=${venta.id})}">
+                <div class="message" data-th-text="${venta.precioEstimado}" ></div>
+                </a>
+                <div class="text-muted" data-th-text="${venta.tiempoEstimado}" ></div>
+            </td>
+            <td>
+                <a class="btn btn-primary" th:href="@{{idVenta}/registrarEnvio (idVenta=${venta.id})}">Registrar</a>
+            </td>S
+        </tr>
+        </tbody>
+    </table>
+    <span class="pull-right bottom">
+        <a class="btn btn-primary">Salir</a>
+    </span>
+</div>
+</html>

@@ -1,0 +1,75 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www,thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout" >
+<div layout:fragment="content">
+    <div class="container">
+        <form class="form-horizontal" th:action="@{/guardarEnvio/}" th:object="${entrega}" method="post" >
+            <input type="hidden" th:value="${venta.id}" id="idVenta" name="idVenta"/>
+            <!--input type="hidden" th:field="*{estado}"/>
+
+            <input type="hidden" th:field="*{longitud}"/>
+            <input type="hidden" th:field="*{latitud}" /-->
+            <div class="form-group row">
+                <label>Direccion Envio:</label>
+                <input type="text" class="form-control" th:field="*{direccionEntrega}" required="required"/>
+            </div>
+            <div class="form-group row">
+                <label>Fecha Entrega:</label>
+                <input type="date" class="form-control" th:field="*{fechaEntrega}" />
+
+            </div>
+            <div class="form-group row">
+                <label>Costo envio:</label>
+                <input type="number" class="form-control" th:field="*{costoEnvio}" required="required"/>
+            </div>
+
+            <div class="form-group row">
+                <table class="table table-striped">
+                    <tr>
+                        <th class="col-md-2">Cliente</th>
+                        <td class="message col-md-2" data-th-text="${cliente.nombreCompleto}"></td>
+                        <th class="col-md-2">Cantidad Total</th>
+                        <td class="message col-md-1" data-th-text="${venta.totalVenta}"></td>
+                        <th class="col-md-2">Total Venta</th>
+                        <td class="message col-md-1" data-th-text="${venta.cantidadTotal}"></td>
+                        <th class="col-md-2">Nombre Vendedor</th>
+                        <td class="message col-md-2" data-th-text="${venta.nombreVendedor}"></td>
+                    </tr>
+                </table>
+                <!--textarea rows="5" class="form-control" id="message" name="message" th:text="${post.message}"/-->
+            </div>
+
+            <table class="table table-striped" id="posts_list">
+                <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>cantidad</th>
+                    <th>precio</th>
+                    <th>dimensiones</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr data-th-each="detalle : ${listaDetalle}">
+                    <td>
+                        <a href="#" class="message" data-th-text="${detalle.descripcion}"></a>
+                    </td>
+                    <td class="message" data-th-text="${detalle.cantidad}"> </td>
+                    <td class="message" data-th-text="${detalle.precio}"> </td>
+                    <td class="message" data-th-text="${detalle.dimensiones}"> </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div class="form-group">
+                <label>Observacion:</label>
+                <textarea rows="3" class="form-control" th:field="*{observacion}"/>
+            </div>
+
+            <!--input type="hidden" id="post_id" rows="5" class="form-control" name="post_id"/-->
+            <button type="submit" class="btn btn-primary">Aceptar</button>
+            <a href="/entregas" class="btn btn-default">Salir</a>
+        </form>
+    </div>
+</div>
+</html>

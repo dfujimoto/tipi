@@ -1,0 +1,32 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www,thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout" >
+<div layout:fragment="content">
+    <scrip>
+        var obj =
+        for (var propiedad in obj) {
+        console.log(prop);
+        }
+
+    </scrip>
+
+    <table class="table table-striped" id="myTable">
+        <thead>
+        <tr class="header">
+            <th>Venta</th>
+            <th>Costo</th>
+            <th>Dirección</th>
+            <th>Fecha</th>
+            <th>Observacion</th>
+            <th>Estado</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr data-th-each="persona : ${persona}">
+        </tr>
+        </tbody>
+    </table>
+</div>
+</html>
