@@ -7,7 +7,6 @@
         <li class="active"><a href="#">Por Entregar</a></li>
         <li><a href="/envios">Entregas</a></li>
     </ul>
-    <!--a class="btn btn-primary" href="/posts/new">Add new post</a-->
 
     <table class="table table-striped" id="posts_list">
         <thead>
@@ -32,13 +31,13 @@
             </td>
             <td>
                 <a class="btn btn-primary" onclick="return confirmar('¿Confirmar Servicio?')" th:href="@{{idVenta}/solicitarEnvio (idVenta=${venta.id})}">
-                <div class="message" data-th-text="${venta.precioEstimado}" ></div>
+                    <div class="message" data-th-text="${venta.precioEstimado}" ></div>
                 </a>
                 <div class="text-muted" data-th-text="${venta.tiempoEstimado}" ></div>
             </td>
             <td>
                 <a class="btn btn-primary" th:href="@{{idVenta}/registrarEnvio (idVenta=${venta.id})}">Registrar</a>
-            </td>S
+            </td>
         </tr>
         </tbody>
     </table>
